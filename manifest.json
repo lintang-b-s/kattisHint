@@ -1,37 +1,28 @@
 {
   "manifest_version": 3,
   "name": "Kattis Hint Giver",
-  "version": "2.0.2",
-  "action": {
-    "default_icon": {
-      "128": "icon128.png"
-    }
-  },
-  "description": "Adds hints to problems on Kattis. Hint source: http://cpbook.net/methodstosolve",
-  "icons": { 
-    "128": "icon128.png"
-  },
-  "author": "Si Jie Lin",
-  "content_scripts": [
-    {
-      "matches": [
-        "https://*.kattis.com/problems*"
-      ],
-      "run_at": "document_end",
-      "js": [
-        "kattis.js"
-      ],
-      "css" : ["spoiler.css"]
-    }
+  "version": "1.0.0",
+  "description": "Shows problem category and hints from methodstosolve on Kattis problem pages and listings.",
+  "permissions": [
+    "storage"
+  ],
+  "host_permissions": [
+    "https://*.kattis.com/*",
+    "https://cpbook.net/*"
   ],
   "background": {
     "service_worker": "background.js"
   },
-  "host_permissions": [
-    "https://cpbook.net/"
+  "content_scripts": [
+    {
+      "matches": ["https://*.kattis.com/problems*"],
+      "js": ["kattis.js"],
+      "run_at": "document_idle"
+    }
   ],
-  "permissions": [
-    "storage"
-  ],
-  "content_security_policy": {}
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
 }
